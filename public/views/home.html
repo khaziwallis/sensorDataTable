@@ -1,0 +1,18 @@
+<div>
+    Search: <input type="text" ng-model="filter.keyword">
+    <table class="table table-bordered">
+        <th ng-repeat="header in headers">
+            <a ng-click="columnSort.sortColumn=headers[$index]; columnSort.reverse=!columnSort.reverse">{{ headers[$index] }}</a>
+        </th>
+        <tr ng-repeat="record in records | orderBy:columnSort.sortColumn:columnSort.reverse | filter:filter.keyword">
+            <td ng-bind-html-unsafe="record[headers[$index]]">{{record.id}}</td>
+            <td ng-bind-html-unsafe="record[headers[$index]]">{{record['x-coord']}}</td>
+            <td ng-bind-html-unsafe="record[headers[$index]]">{{record['y-coord']}}</td>
+            <td ng-bind-html-unsafe="record[headers[$index]]">{{record.status}}</td>
+        </tr>
+    </table>
+    <div class="well">
+        sortColumn: {{columnSort.sortColumn}}<br/>
+        reverse: {{columnSort.reverse}}
+    </div>
+</div>
